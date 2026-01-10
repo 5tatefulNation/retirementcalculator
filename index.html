@@ -216,6 +216,7 @@
             cursor: pointer;
             transition: transform 0.2s;
             margin-bottom: 20px;
+            margin-top: 30px;
         }
         
         .calculate-btn:hover {
@@ -331,22 +332,26 @@
                 </select>
             </div>
             
-            <div class="form-grid">
+            <div class="form-grid" id="basicFormGrid">
                 <div class="form-group">
                     <label for="principal">Principal ($)</label>
-                    <input type="number" id="principal" placeholder="10000" step="0.01">
+                    <input type="number" id="principal" step="0.01">
                 </div>
                 <div class="form-group">
                     <label for="contribution">Annual Contribution ($)</label>
-                    <input type="number" id="contribution" placeholder="5000" step="0.01">
+                    <input type="number" id="contribution" step="0.01">
                 </div>
                 <div class="form-group">
                     <label for="years">Years</label>
-                    <input type="number" id="years" placeholder="30" step="1">
+                    <input type="number" id="years" step="1">
                 </div>
                 <div class="form-group">
                     <label for="rate">Interest Rate (%)</label>
-                    <input type="number" id="rate" placeholder="7" step="0.01">
+                    <input type="number" id="rate" step="0.01">
+                </div>
+                <div class="form-group hidden" id="targetFVGroup">
+                    <label for="targetFV">Target Future Value ($)</label>
+                    <input type="number" id="targetFV" step="0.01">
                 </div>
             </div>
             
@@ -455,6 +460,8 @@
         const contribution = document.getElementById('contribution');
         const years = document.getElementById('years');
         const rate = document.getElementById('rate');
+        const targetFV = document.getElementById('targetFV');
+        const targetFVGroup = document.getElementById('targetFVGroup');
         const calculateBtn = document.getElementById('calculateBtn');
         const result = document.getElementById('result');
         const resultLabel = document.getElementById('resultLabel');
@@ -467,19 +474,27 @@
         function updateInputStates() {
             const solving = solveFor.value;
             
+            // Reset all inputs
             Object.keys(inputs).forEach(key => {
-                if (key === solving) {
-                    inputs[key].disabled = true;
-                    inputs[key].classList.add('output');
-                    inputs[key].value = '';
-                } else {
-                    inputs[key].disabled = false;
-                    inputs[key].classList.remove('output');
-                }
+                inputs[key].disabled = false;
+                inputs[key].classList.remove('output');
             });
             
+            // Handle target FV visibility
             if (solving === 'futureValue') {
-                // Future value is calculated separately
+                targetFVGroup.classList.add('hidden');
+                targetFV.value = '';
+            } else {
+                targetFVGroup.classList.remove('hidden');
+            }
+            
+            // Disable the output field
+            if (solving !== 'futureValue') {
+                if (inputs[solving]) {
+                    inputs[solving].disabled = true;
+                    inputs[solving].classList.add('output');
+                    inputs[solving].value = '';
+                }
             }
         }
         
@@ -491,6 +506,7 @@
             const PMT = parseFloat(contribution.value) || 0;
             const t = parseFloat(years.value) || 0;
             const r = (parseFloat(rate.value) || 0) / 100;
+            const FV = parseFloat(targetFV.value) || 0;
             
             let resultVal;
             let label;
@@ -505,7 +521,6 @@
                 label = 'Future Value';
             } else if (solving === 'principal') {
                 // P = (FV - PMT × [((1 + r)^t - 1) / r]) / (1 + r)^t
-                const FV = parseFloat(prompt('Enter target Future Value:')) || 0;
                 if (r === 0) {
                     resultVal = FV - PMT * t;
                 } else {
@@ -514,7 +529,6 @@
                 label = 'Required Principal';
             } else if (solving === 'contribution') {
                 // PMT = (FV - P(1 + r)^t) × r / ((1 + r)^t - 1)
-                const FV = parseFloat(prompt('Enter target Future Value:')) || 0;
                 if (r === 0) {
                     resultVal = (FV - P) / t;
                 } else {
@@ -523,12 +537,10 @@
                 label = 'Required Annual Contribution';
             } else if (solving === 'rate') {
                 // Use Newton's method to solve for r
-                const FV = parseFloat(prompt('Enter target Future Value:')) || 0;
                 resultVal = solveForRate(P, PMT, t, FV);
                 label = 'Required Interest Rate';
             } else if (solving === 'years') {
                 // Solve for t using logarithms (simplified for P only, complex with PMT)
-                const FV = parseFloat(prompt('Enter target Future Value:')) || 0;
                 if (PMT === 0 && r !== 0) {
                     resultVal = Math.log(FV / P) / Math.log(1 + r);
                 } else {
@@ -625,19 +637,19 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Principal ($)</label>
-                        <input type="number" class="account-principal" placeholder="10000" step="0.01">
+                        <input type="number" class="account-principal" step="0.01">
                     </div>
                     <div class="form-group">
                         <label>Annual Contribution ($)</label>
-                        <input type="number" class="account-contribution" placeholder="5000" step="0.01">
+                        <input type="number" class="account-contribution" step="0.01">
                     </div>
                     <div class="form-group">
                         <label>Years</label>
-                        <input type="number" class="account-years" placeholder="30" step="1">
+                        <input type="number" class="account-years" step="1">
                     </div>
                     <div class="form-group">
                         <label>Interest Rate (%)</label>
-                        <input type="number" class="account-rate" placeholder="7" step="0.01">
+                        <input type="number" class="account-rate" step="0.01">
                     </div>
                 </div>
             `;
