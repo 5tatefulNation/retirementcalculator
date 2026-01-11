@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retirement Calculator</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>💰 Retirement Calculator</h1>
+            <p>Calculate your financial future with precision</p>
+        </header>
+
+        <!-- Mode Toggle -->
+        <nav class="mode-toggle">
+            <div class="mode-buttons">
+                <button class="mode-btn active" id="basicModeBtn">
+                    Basic Mode
+                </button>
+                <button class="mode-btn locked" id="portfolioModeBtn">
+                    Portfolio Mode
+                </button>
+            </div>
+        </nav>
+
+        <!-- View Mount Point -->
+        <main id="appView">
+            <!-- Views (basic / portfolio / upgrade) will be injected here -->
+        </main>
+    </div>
+
+    <!-- App Scripts -->
+    <script src="js/state.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/basic-calculator.js"></script>
+    <script src="js/portfolio-calculator.js"></script>
+</body>
+</html>

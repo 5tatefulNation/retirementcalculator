@@ -1,0 +1,35 @@
+<section class="calculator" id="portfolioMode">
+    <form id="portfolioForm">
+        <div class="global-inputs">
+            <h3>Portfolio Settings</h3>
+            <div class="global-grid">
+                <div class="form-group">
+                    <label for="portfolioRate">Interest Rate (%)</label>
+                    <input type="number" id="portfolioRate" step="0.01" />
+                </div>
+
+                <div class="form-group">
+                    <label for="portfolioYears">Years</label>
+                    <input type="number" id="portfolioYears" step="1" />
+                </div>
+            </div>
+        </div>
+
+        <div id="accountsContainer"></div>
+
+        <button type="button" class="add-account" id="addAccountBtn">
+            + Add Account
+        </button>
+
+        <div id="portfolioTotal" class="portfolio-total hidden">
+            <div class="portfolio-total-label">
+                Total Portfolio Future Value
+            </div>
+            <div class="portfolio-total-value" id="portfolioTotalValue">—</div>
+        </div>
+
+        <button type="submit" class="calculate-btn" id="portfolioCalculateBtn">
+            Calculate Portfolio
+        </button>
+    </form>
+</section>
