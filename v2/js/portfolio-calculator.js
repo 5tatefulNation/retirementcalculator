@@ -1,9 +1,11 @@
-// Portfolio Mode Calculator — wrap in function
-function initPortfolioCalculator() {
+// js/portfolio-calculator.js
+
+export function initPortfolioCalculator() {
     let accountCount = 0;
 
     const accountsContainer = document.getElementById('accountsContainer');
     const addAccountBtn = document.getElementById('addAccountBtn');
+    const resetPortfolioBtn = document.getElementById('resetPortfolioBtn');
     const portfolioForm = document.getElementById('portfolioForm');
     const portfolioRate = document.getElementById('portfolioRate');
     const portfolioYears = document.getElementById('portfolioYears');
@@ -46,7 +48,7 @@ function initPortfolioCalculator() {
     function updateRemoveButtons() {
         const accounts = document.querySelectorAll('.account-section');
         const removeButtons = document.querySelectorAll('.remove-account');
-        if (accounts.length <= 1) removeButtons.forEach(btn => btn.classList.add('hidden'));
+        if (accounts.length <= 2) removeButtons.forEach(btn => btn.classList.add('hidden'));
         else removeButtons.forEach(btn => btn.classList.remove('hidden'));
     }
 
@@ -60,6 +62,15 @@ function initPortfolioCalculator() {
     });
 
     addAccountBtn.addEventListener('click', addAccount);
+
+    resetPortfolioBtn.addEventListener('click', () => {
+        accountsContainer.innerHTML = '';
+        accountCount = 0;
+        portfolioForm.reset();
+        portfolioTotal.classList.add('hidden');
+        addAccount();
+        addAccount(); // Always start with 2 accounts
+    });
 
     portfolioForm.addEventListener('submit', e => {
         e.preventDefault();
@@ -76,7 +87,7 @@ function initPortfolioCalculator() {
             const P = parseFloat(account.querySelector('.account-principal').value) || 0;
             const PMT = parseFloat(account.querySelector('.account-contribution').value) || 0;
 
-            let fv = r === 0 ? P + PMT * t : P * Math.pow(1 + r, t) + PMT * ((Math.pow(1 + r, t) - 1) / r);
+            const fv = r === 0 ? P + PMT * t : P * Math.pow(1 + r, t) + PMT * ((Math.pow(1 + r, t) - 1) / r);
 
             const resultContainer = account.querySelector('.account-result');
             const resultValue = account.querySelector('.account-result-value');
@@ -90,5 +101,7 @@ function initPortfolioCalculator() {
         portfolioTotal.classList.remove('hidden');
     }
 
-    addAccount(); // Add first account by default
+    // Initialize with 2 default accounts
+    addAccount();
+    addAccount();
 }

@@ -21,7 +21,8 @@ function loadPortfolioMode() {
         .then(async html => {
             appView.innerHTML = html;
 
-            const module = await import('./portfolio-calculator/index.js');
+            // Import the modular init function for Portfolio Mode
+            const module = await import('./portfolio-calculator.js');
             module.initPortfolioCalculator();
         })
         .catch(err => console.error('Failed to load portfolio.html:', err));
