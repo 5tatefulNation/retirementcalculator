@@ -1,20 +1,25 @@
-/* Base button styles */
+/* =====================
+   Base Button Styles
+   ===================== */
 button {
     font-family: inherit;
     font-weight: 600;
     cursor: pointer;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: all 0.2s ease;
 }
 
-/* Calculate button */
+/* =====================
+   Calculate Button
+   ===================== */
 .calculate-btn {
-    padding: 14px 24px;
+    flex: 1;
+    padding: 12px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     font-size: 1em;
-    flex: 1;
+    margin: 0;
 }
 
 .calculate-btn:hover {
@@ -25,13 +30,16 @@ button {
     transform: translateY(0);
 }
 
-/* Reset Portfolio button */
+/* =====================
+   Reset Portfolio Button
+   ===================== */
 .reset-portfolio {
-    padding: 14px 24px;
+    flex: 1;
+    padding: 12px;
     background: #ff914d;
     color: white;
     font-size: 1em;
-    flex: 1;
+    margin-left: 6px;
 }
 
 .reset-portfolio:hover {
@@ -39,58 +47,82 @@ button {
     transform: translateY(-2px);
 }
 
-/* Add Account button */
+/* =====================
+   Add Account Button
+   ===================== */
 .add-account {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background: white;
     color: #667eea;
     border: 2px dashed #667eea;
-    font-size: 1em;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
+    font-size: 0.95em;
+    border-radius: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .add-account:hover {
     background: #f8f9ff;
 }
 
-/* Remove Account button */
+/* =====================
+   Remove Account Button
+   ===================== */
 .remove-account {
-    padding: 6px 12px;
+    padding: 4px 10px;
     background: #ff4757;
     color: white;
-    font-size: 0.9em;
-    border-radius: 6px;
-    display: inline-block;
-}
-
-.remove-account.hidden {
-    display: none;
+    font-size: 0.85em;
+    border-radius: 5px;
+    margin-left: 6px;
+    display: inline-block; /* only show inline with header */
 }
 
 .remove-account:hover {
     background: #ee5a6f;
 }
 
-/* Flex wrapper for calculate + reset buttons */
-.portfolio-actions {
+/* =====================
+   Button Containers / Flex
+   ===================== */
+.button-row {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    gap: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-/* Account section spacing */
-.account-section {
-    margin-bottom: 10px; /* reduced dead space */
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+/* Action buttons container */
+.action-buttons {
+    display: flex;
+    gap: 10px; /* small spacing between buttons */
+    margin-top: 10px;
 }
 
-/* Keep account results hidden initially */
-.account-result.hidden {
-    display: none;
+/* Make reset + calculate stretch equally */
+.action-buttons button {
+    flex: 1; /* take equal width */
+    padding: 14px 0; /* consistent height */
+    font-size: 1em;
+}
+
+/* Optional: visual hierarchy */
+.reset-portfolio {
+    background: #ff914d;
+    color: white;
+}
+
+.reset-portfolio:hover {
+    background: #ff7f24;
+    transform: translateY(-2px);
+}
+
+.calculate-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
 }

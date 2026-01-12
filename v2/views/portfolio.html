@@ -1,35 +1,38 @@
-<div class="global-inputs">
-    <h3>Portfolio Settings</h3>
-    <div class="global-grid">
-        <div class="form-group">
-            <label for="portfolioRate">Annual Interest Rate (%)</label>
-            <input type="number" id="portfolioRate" step="0.01">
-        </div>
-        <div class="form-group">
-            <label for="portfolioYears">Years</label>
-            <input type="number" id="portfolioYears" step="1">
+<!-- views/portfolio.html -->
+<div class="calculator">
+    <!-- Global Inputs -->
+    <div class="global-inputs">
+        <h3>Portfolio Settings</h3>
+        <div class="global-grid">
+            <div class="form-group">
+                <label for="portfolioRate">Annual Rate (%)</label>
+                <input type="number" id="portfolioRate" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="portfolioYears">Years</label>
+                <input type="number" id="portfolioYears" step="1">
+            </div>
         </div>
     </div>
+
+    <!-- Portfolio Form -->
+    <form id="portfolioForm">
+        <!-- Accounts Container -->
+        <div id="accountsContainer"></div>
+
+        <!-- Add Account Button -->
+        <button type="button" class="add-account" id="addAccountBtn">Add Account</button>
+
+        <!-- Total Calculation -->
+        <div class="portfolio-total">
+            <div class="portfolio-total-label">Portfolio Total</div>
+            <div class="portfolio-total-value" id="portfolioTotalValue">—</div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button type="submit" class="calculate-btn">Calculate</button>
+            <button type="button" class="reset-portfolio" id="resetPortfolioBtn">Reset Portfolio</button>
+        </div>
+    </form>
 </div>
-
-<form id="portfolioForm">
-    <!-- Accounts container -->
-    <div id="accountsContainer">
-        <!-- JS injects account sections here -->
-    </div>
-
-    <!-- Total display -->
-    <div id="portfolioTotal" class="portfolio-total hidden">
-        <div class="portfolio-total-label">Total Future Value:</div>
-        <div class="portfolio-total-value" id="portfolioTotalValue">—</div>
-    </div>
-
-    <!-- Action buttons -->
-    <div class="portfolio-actions">
-        <button type="submit" class="calculate-btn">Calculate</button>
-        <button type="button" class="reset-portfolio" id="resetPortfolioBtn">Reset</button>
-    </div>
-
-    <!-- Add account -->
-    <button type="button" class="add-account" id="addAccountBtn">Add Account</button>
-</form>
