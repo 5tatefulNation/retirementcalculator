@@ -1,0 +1,123 @@
+/* --------------------------
+   Calculator / Form Container
+--------------------------- */
+.calculator {
+    background: rgba(255, 255, 255, 0.95); /* translucent white */
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    color: #333; /* default text inside form */
+}
+
+/* --------------------------
+   Form Grids
+--------------------------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media (min-width: 600px) {
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --------------------------
+   Form Groups
+--------------------------- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Order inputs correctly */
+#principalGroup { order: 1; }
+#contributionGroup { order: 2; }
+#rateGroup { order: 3; }
+#yearsGroup { order: 4; }
+#targetFVGroup { order: 5; }
+
+/* Labels */
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+/* Inputs */
+.form-group input {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+    color: #333; /* input text color */
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* --------------------------
+   Global Inputs for Portfolio Mode
+--------------------------- */
+.global-inputs {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f0f4ff;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+}
+
+.global-inputs h3 {
+    color: #667eea;
+    font-size: 1em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.global-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media (min-width: 600px) {
+    .global-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --------------------------
+   Account Section Inputs
+--------------------------- */
+.account-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    position: relative;
+}
+
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.account-header h3 {
+    color: #667eea;
+    font-size: 1.1em;
+}
+
+.account-inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}

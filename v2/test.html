@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Sanity Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🛠 Calculator Dev Test</h1>
+            <p>One-click sanity check for all modules</p>
+        </header>
+
+        <button id="runTestBtn" class="calculate-btn">Run All Sanity Checks</button>
+
+        <div id="testResults" class="result"></div>
+
+        <section id="sandbox">
+            <!-- Mount sandbox calculators here -->
+            <div id="basicSandbox"></div>
+            <div id="portfolioSandbox"></div>
+        </section>
+    </div>
+
+    <!-- App Scripts -->
+    <script src="js/state.js"></script>
+    <script src="js/basic-calculator.js"></script>
+    <script src="js/portfolio-calculator.js"></script>
+    <script src="js/test.js"></script>
+</body>
+</html>

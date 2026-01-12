@@ -1,3 +1,5 @@
-@import url("css/base.css");
-@import url("css/components.css");
-@import url("css/modes.css");
+@import 'styles/utilities.css';
+@import 'styles/layout.css';      /* header, container, etc */
+@import 'styles/forms.css';
+@import 'styles/buttons.css';
+@import 'styles/results.css';
